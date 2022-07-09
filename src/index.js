@@ -1,1 +1,2 @@
-console.log("welcome home");
+import Ship from "./shipFactory";
+console.log(Ship());
