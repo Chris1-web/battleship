@@ -29,7 +29,7 @@ create 10 arrays named A-J, with a length of 10.
 e.g const A = [1,2,3,4,5,6,7,8,9,10]
 placeship function by coordinate and putting name in place of original number
 e.g gameboard.placeShip(A, 6, submarine) const A = [1,2,3,4,5,submarine,7,8,9,10]
-receiveAttack function takes a coordinate and marks if it hit position
+receiveAttack function takes a coordinate and marks it hit position
 
 <!-- create ship -->
 
