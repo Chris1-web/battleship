@@ -24,35 +24,34 @@ const Gameboard = function () {
     J.push("");
   }
 
-  const xAxisArray = [A, B, C, D, E, F, G, H, I, J];
+  // choose array with xAxis sring
+  const chooseArray = function (xAxis) {
+    switch (xAxis) {
+      case "A":
+        return A;
+      case "B":
+        return B;
+      case "C":
+        return C;
+      case "D":
+        return D;
+      case "E":
+        return E;
+      case "F":
+        return F;
+      case "G":
+        return G;
+      case "H":
+        return H;
+      case "I":
+        return I;
+      case "J":
+        return J;
+    }
+  };
 
   const placeShip = function (xAxis, yAxis, ship) {
-    // choose array with xAxis sring
-    const chooseArray = function () {
-      switch (xAxis) {
-        case "A":
-          return A;
-        case "B":
-          return B;
-        case "C":
-          return C;
-        case "D":
-          return D;
-        case "E":
-          return E;
-        case "F":
-          return F;
-        case "G":
-          return G;
-        case "H":
-          return H;
-        case "I":
-          return I;
-        case "J":
-          return J;
-      }
-    };
-    const chosenArray = chooseArray();
+    const chosenArray = chooseArray(xAxis);
     const shipLength = ship.getLength();
     for (let i = 0; i < shipLength; i++) {
       chosenArray[yAxis + i] = "ship";
