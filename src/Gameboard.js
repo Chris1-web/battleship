@@ -58,7 +58,14 @@ const Gameboard = function () {
     }
     return chosenArray;
   };
-  return { placeShip };
+
+  const receiveAttack = function (xAxis, yAxis) {
+    const chosenArray = chooseArray(xAxis);
+    chosenArray[yAxis] = "X";
+    return chosenArray;
+  };
+
+  return { placeShip, receiveAttack };
 };
 
 export default Gameboard;
