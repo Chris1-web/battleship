@@ -11,6 +11,9 @@ const Ship = function (length) {
 
   const hit = function (position) {
     shipSpace[position] = "X";
+  };
+
+  const getShipSpace = function () {
     return shipSpace;
   };
 
@@ -18,7 +21,7 @@ const Ship = function (length) {
     return shipSpace.every((currentValue) => currentValue === "X");
   };
 
-  return { getLength, hit, isSunk };
+  return { getLength, getShipSpace, hit, isSunk };
 };
 
 export default Ship;
