@@ -5,6 +5,11 @@ describe("ship factory", () => {
     const carrier = Ship(5);
     expect(carrier.getLength()).toBe(5);
   });
+  test.only("should return array when hit", () => {
+    const shipSpace = ["", "", "X"];
+    const submarine = Ship(3);
+    expect(submarine.hit(2)).toEqual(shipSpace);
+  });
   test("should not sink if ship is hit less than the number of its length", () => {
     const battleship = Ship(4);
     battleship.hit(0);

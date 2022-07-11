@@ -11,6 +11,7 @@ const Ship = function (length) {
 
   const hit = function (position) {
     shipSpace[position] = "X";
+    return shipSpace;
   };
 
   const isSunk = function () {
