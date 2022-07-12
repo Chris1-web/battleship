@@ -5,7 +5,7 @@ describe("ship factory", () => {
     const carrier = Ship(5);
     expect(carrier.getLength()).toBe(5);
   });
-  test.only("should return ship array when called", () => {
+  test("should return ship array when called", () => {
     const shipSpace = ["", "", "X"];
     const submarine = Ship(3);
     submarine.hit(2);
