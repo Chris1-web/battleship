@@ -80,7 +80,7 @@ const Gameboard = function () {
           createdShipNames.push("Submarine");
           return "Submarine";
         }
-      case 3:
+      case 2:
         createdShipNames.push("Destroyer");
         return "Destroyer";
     }
@@ -107,6 +107,7 @@ const Gameboard = function () {
     const chosenArray = chooseArray(xAxis);
     // if the chosenArray contains a ship
     if (chosenArray[yAxis] === "ship") {
+      console.log(createdShipsInfo);
       // find the ship located there from createdShipInfo array
       const shipObject = createdShipsInfo.filter(
         (ship) => ship.x === xAxis && ship.y.includes(yAxis)
