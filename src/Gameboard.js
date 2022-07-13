@@ -105,9 +105,7 @@ const Gameboard = function () {
 
   const receiveAttack = function (xAxis, yAxis) {
     const chosenArray = chooseArray(xAxis);
-    // check if the chosenArray contains a ship
-    // if it does, check createdShipInfo for the ship contained there and send hit function to the ship
-    // replace chosenArray with X
+    // if the chosenArray contains a ship
     if (chosenArray[yAxis] === "ship") {
       // find the ship located there from createdShipInfo array
       const shipObject = createdShipsInfo.filter(

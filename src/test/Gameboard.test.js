@@ -43,4 +43,44 @@ describe("gameboard factory", () => {
     expect(ship1.getShipSpace()).toEqual(ship1SpaceAfterAttack);
     expect(ship2.getShipSpace()).toEqual(ship2SpaceAfterAttack);
   });
+  test("should report if all ships in a board have sunk or not", () => {
+    // create gameboard
+    const gameboard = Gameboard();
+
+    // 1. create all ships
+    const Carrier = Ship(5);
+    const Battleship = Ship(4);
+    const Cruiser = Ship(3);
+    const Submarine = Ship(3);
+    const Destroyer = Ship(2);
+
+    // 2. place ships
+    gameboard.placeShip("C", 4, Carrier); //const A = ["", "", "", "", "ship", "ship", "ship", "ship", "ship", ""]
+    gameboard.placeShip("E", 2, Battleship); //const E = ["", "", "ship", "ship", "ship", "ship", "", "", "", ""]
+    gameboard.placeShip("G", 0, Cruiser); //const E = ["ship", "ship", "ship", "", "", "", "", "", "", ""]
+    gameboard.placeShip("J", 5, Submarine); //const J = ["", "", "", "", "", "ship", "ship", "ship", "", ""]
+    gameboard.placeShip("A", 8, Destroyer); //const A = ["", "", "", "", "", "", "", "", "ship", "ship"]
+
+    // shot ships and sink all its gameboard ships
+    gameboard.receiveAttack("C", 4);
+    gameboard.receiveAttack("C", 5);
+    gameboard.receiveAttack("C", 6);
+    gameboard.receiveAttack("C", 7);
+    gameboard.receiveAttack("C", 8);
+    gameboard.receiveAttack("E", 2);
+    gameboard.receiveAttack("E", 3);
+    gameboard.receiveAttack("E", 4);
+    gameboard.receiveAttack("E", 5);
+    gameboard.receiveAttack("G", 0);
+    gameboard.receiveAttack("G", 1);
+    gameboard.receiveAttack("G", 2);
+    gameboard.receiveAttack("J", 5);
+    gameboard.receiveAttack("J", 6);
+    gameboard.receiveAttack("J", 7);
+    gameboard.receiveAttack("A", 8);
+    gameboard.receiveAttack("A", 9);
+
+    // expect gameboard to report that all the gameboard ships have sunk
+    expect(gameboard.reportShipsState()).toBeTruthy();
+  });
 });
