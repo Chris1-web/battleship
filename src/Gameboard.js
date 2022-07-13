@@ -62,6 +62,7 @@ const Gameboard = function () {
     return { name, ship, x: xAxis, y: y };
   };
 
+  // for getName function only
   const createdShipNames = [];
 
   const getName = function (shipLength) {
@@ -124,7 +125,14 @@ const Gameboard = function () {
     return chosenArray;
   };
 
-  return { placeShip, receiveAttack };
+  // check if all ships in the gameboard have status of sunk
+  const reportShipsState = function () {
+    return createdShipsInfo.every(
+      (shipObject) => shipObject.ship.isSunk() === true
+    );
+  };
+
+  return { placeShip, receiveAttack, reportShipsState };
 };
 
 export default Gameboard;
