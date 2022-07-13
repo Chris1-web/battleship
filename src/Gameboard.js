@@ -89,13 +89,12 @@ const Gameboard = function () {
   const placeShip = function (xAxis, yAxis, ship) {
     const chosenArray = chooseArray(xAxis);
     const shipLength = ship.getLength();
-    // store ship information e.g name, ship, array, and index in createdShipsInfo array
+    // store ship information e.g name, ship, array(xAxis), and index(yAxis) in createdShipsInfo array
     const shipName = getName(shipLength);
     const shipObject = shipInfo(shipName, ship, xAxis, []);
     for (let i = 0; i < shipLength; i++) {
       chosenArray[yAxis + i] = "ship";
       // stores all yAxis positions in the xAxis array
-      // shipObject.y += `${yAxis + i},`;
       shipObject.y.push(yAxis + i);
     }
 
@@ -105,17 +104,23 @@ const Gameboard = function () {
   };
 
   const receiveAttack = function (xAxis, yAxis) {
-    console.log(createdShipsInfo);
     const chosenArray = chooseArray(xAxis);
-    // // check if the chosenArray contains a ship
-    // // if it does, check createdShipInfo for the ship contained there and send hit function to the ship
-    // // replace chosenArray with X
-    // console.log(xAxis, yAxis);
-    // if (chosenArray[yAxis] === "ship") {
-    //   // find the ship located there from createdShipInfo array
-    //   const ship = createdShipsInfo.filter((ship) => ship.x === xAxis);
-    //   console.log();
-    // }
+    // check if the chosenArray contains a ship
+    // if it does, check createdShipInfo for the ship contained there and send hit function to the ship
+    // replace chosenArray with X
+    if (chosenArray[yAxis] === "ship") {
+      // find the ship located there from createdShipInfo array
+      const shipObject = createdShipsInfo.filter(
+        (ship) => ship.x === xAxis && ship.y.includes(yAxis)
+      )[0];
+      // find the position of the ship that was hit with yAxis to send hit function there
+      const shipHitPosition = shipObject.y.findIndex(
+        (space) => space === yAxis
+      );
+      shipObject.ship.hit(shipHitPosition);
+      chosenArray[yAxis] = "X";
+      return shipObject.ship.getShipSpace();
+    }
     chosenArray[yAxis] = "O";
     return chosenArray;
   };

@@ -20,10 +20,10 @@ describe("gameboard factory", () => {
     const gameboard = Gameboard();
     expect(gameboard.receiveAttack("A", 2)).toEqual(A);
   });
-  test.only("should send hit function and mark (X) to ship if there is a ship at the attack location", () => {
+  test("should send hit function and mark (X) to ship if there is a ship at the attack location", () => {
     // ship hit function return
     const ship1SpaceAfterAttack = ["", "X", ""];
-    const ship2Space = ["X", "", "X", ""];
+    const ship2SpaceAfterAttack = ["", "", "X", ""];
 
     // create gameboard
     const gameboard = Gameboard();
@@ -34,11 +34,13 @@ describe("gameboard factory", () => {
 
     // place ships
     gameboard.placeShip("C", 4, ship1); // = const C = ["", "", "", "", "ship", "ship", "ship", "", "", ""]
-    // gameboard.placeShip("J", 3, ship2); // = const J = ["", "", "", "ship", "ship", "ship", "ship", "", "", ""]
+    gameboard.placeShip("J", 3, ship2); // = const J = ["", "", "", "ship", "ship", "ship", "ship", "", "", ""]
 
     // hit ship1 from gameboard
     gameboard.receiveAttack("C", 5);
+    gameboard.receiveAttack("J", 5);
 
     expect(ship1.getShipSpace()).toEqual(ship1SpaceAfterAttack);
+    expect(ship2.getShipSpace()).toEqual(ship2SpaceAfterAttack);
   });
 });
