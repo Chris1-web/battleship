@@ -15,12 +15,12 @@ describe("gameboard factory", () => {
     //const B = ["", "ship", "ship", "ship", "", "", "", "", "", ""]
     expect(gameboard.placeShip("B", 1, ship)).toEqual(B);
   });
-  test("should receive attack and mark position with X", () => {
-    const A = ["", "", "X", "", "", "", "", "", "", ""];
+  test("should receive attack and mark position with O when it does not hit a ship", () => {
+    const A = ["", "", "O", "", "", "", "", "", "", ""];
     const gameboard = Gameboard();
     expect(gameboard.receiveAttack("A", 2)).toEqual(A);
   });
-  test("should send hit function to ship if there is a ship at the attack location", () => {
+  test.only("should send hit function and mark (X) to ship if there is a ship at the attack location", () => {
     // ship hit function return
     const ship1SpaceAfterAttack = ["", "X", ""];
     const ship2Space = ["X", "", "X", ""];
@@ -39,6 +39,6 @@ describe("gameboard factory", () => {
     // hit ship1 from gameboard
     gameboard.receiveAttack("C", 5);
 
-    // expect(ship1.getShipSpace()).toEqual(ship1SpaceAfterAttack);
+    expect(ship1.getShipSpace()).toEqual(ship1SpaceAfterAttack);
   });
 });

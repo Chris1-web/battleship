@@ -91,11 +91,12 @@ const Gameboard = function () {
     const shipLength = ship.getLength();
     // store ship information e.g name, ship, array, and index in createdShipsInfo array
     const shipName = getName(shipLength);
-    const shipObject = shipInfo(shipName, ship, xAxis, "");
+    const shipObject = shipInfo(shipName, ship, xAxis, []);
     for (let i = 0; i < shipLength; i++) {
       chosenArray[yAxis + i] = "ship";
       // stores all yAxis positions in the xAxis array
-      shipObject.y += `${yAxis + i},`;
+      // shipObject.y += `${yAxis + i},`;
+      shipObject.y.push(yAxis + i);
     }
 
     createdShipsInfo.push(shipObject);
@@ -106,10 +107,16 @@ const Gameboard = function () {
   const receiveAttack = function (xAxis, yAxis) {
     console.log(createdShipsInfo);
     const chosenArray = chooseArray(xAxis);
-    // if the chosenArray[yaxis] contains ship, find ship from
-    // createdShipInformation array by xAxis = chosenArray and yStart = yAxis (filter)
-    // then send hit function to the ship itself
-    chosenArray[yAxis] = "X";
+    // // check if the chosenArray contains a ship
+    // // if it does, check createdShipInfo for the ship contained there and send hit function to the ship
+    // // replace chosenArray with X
+    // console.log(xAxis, yAxis);
+    // if (chosenArray[yAxis] === "ship") {
+    //   // find the ship located there from createdShipInfo array
+    //   const ship = createdShipsInfo.filter((ship) => ship.x === xAxis);
+    //   console.log();
+    // }
+    chosenArray[yAxis] = "O";
     return chosenArray;
   };
 
